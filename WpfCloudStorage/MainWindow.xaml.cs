@@ -170,7 +170,9 @@ namespace WpfCloudStorage
                     bnUpLoad16.IsEnabled = true;
                 }
 				else 
-                {
+                {   
+                    MessageBox.Show($"File {tbFileName.Text.Trim()} was not found in the conteiner {tbConteinerName.Text}!");
+
                     img.Source = null;
                     bnSaveAs.IsEnabled = false;
                     bnUpLoad16.IsEnabled = false;

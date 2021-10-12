@@ -48,6 +48,8 @@ namespace WpfCloudStorage
 
 			string connStr = string.Format(ConnectionSting, accessKey);
 
+			ushort[] target = new ushort[0];
+
 			// create object of your storage account  
 			CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connStr);
 
@@ -63,15 +65,20 @@ namespace WpfCloudStorage
 			// get list of all blobs in the container  
 			//var allBlobs = container.ListBlobs();
 
-			// convert the blob to memorystream  
-			MemoryStream memStream = new MemoryStream();
-			await blockBlob.DownloadToStreamAsync(memStream);
+			bool isExist = await blockBlob.ExistsAsync();
 
-			byte[] array8 = memStream.ToArray();
+			if (isExist)
+			{
+				// convert the blob to memorystream  
+				MemoryStream memStream = new MemoryStream();
+				await blockBlob.DownloadToStreamAsync(memStream);
 
-			ushort[] target = new ushort[array8.Length / 2];
+				byte[] array8 = memStream.ToArray();
 
-			Buffer.BlockCopy(array8, 0, target, 0, array8.Length);
+				target = new ushort[array8.Length / 2];
+
+				Buffer.BlockCopy(array8, 0, target, 0, array8.Length);
+			}
 
 			return target;
 		}
