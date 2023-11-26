@@ -68,7 +68,7 @@ namespace WpfCloudStorage
             canvas.Height = img.Height = Convert.ToInt32(tbHeight.Text);
 
             tbFileName.Text = "Lena16_800x600-1.raw";
-            tbAccessKey.Text = "fcVManeiU96bCVWSTUotUcZOOxUhnArkRTbTxGiAhHQzwe8Vo7pkQodZqzE4ZR4eEOlR3uu3qLUyvJ32ft8pVw==";
+            tbAccessKey.Text = "your key";
             tbConteinerName.Text = "uploadimage";
 
             cbSaveAs.ItemsSource = FileTypes;
